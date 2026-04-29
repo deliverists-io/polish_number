@@ -39,10 +39,10 @@ module PolishNumber
     if number == 0
       result = ZERO.dup
     else
-      formatted_number = sprintf('%09.0f', number)
+      formatted_number = format('%09d', number)
       digits = formatted_number.chars.map { |char| char.to_i }
 
-      result = ''
+      result = String.new
       result << process_0_999(digits[0..2])
       result << millions(number/1000000, digits[0..2])
       result << ' '
@@ -65,7 +65,7 @@ module PolishNumber
   private
 
   def self.process_0_999(digits)
-    result = ''
+    result = String.new
     result << HUNDREDS[digits[0]]
 
     if digits[1] == 1 && digits[2] != 0
